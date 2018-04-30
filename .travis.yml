@@ -2,9 +2,14 @@ language: node_js
 node_js:
 - '8'
 before_install:
-- openssl aes-256-cbc -K $encrypted_365cdf6f8b27_key -iv $encrypted_365cdf6f8b27_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_365cdf6f8b27_key -iv $encrypted_365cdf6f8b27_iv
+    -in id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
-  - echo -e "Host 118.24.89.72\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp ssh_config ~/.ssh/config
+  - git config --global user.name "bigxigua"
+  - git config --global user.email "1336945839@qq.com"
+
 after_success:
 - ssh ubuntu@118.24.89.72 'cd /var/www/workspace/chat && git pull'
