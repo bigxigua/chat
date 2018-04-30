@@ -4,8 +4,7 @@ node_js:
 before_install:
   - openssl aes-256-cbc -K $encrypted_365cdf6f8b27_key -iv $encrypted_365cdf6f8b27_iv
     -in id_rsa_travis.enc -out .travis/id_rsa_travis -d
-  - cd ~
-  - ls
+  - la
   - chmod 600 ~/.ssh/id_rsa
   # 添加ssh密钥
   - eval $(ssh-agent)
