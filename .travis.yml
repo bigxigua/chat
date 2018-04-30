@@ -7,7 +7,7 @@ before_install:
   - ls
   - pwd
   - cd ~/.ssh
-  - ls
+  - pwd
   - chmod 600 ~/.ssh/id_rsa
   # 添加ssh密钥
   - eval $(ssh-agent)
