@@ -11,14 +11,11 @@ before_install:
   - ls  ~/.ssh
   - chmod 600 ~/.ssh/*
    - sudo chmod 644 ~/.ssh/config
-  # 添加ssh密钥
   - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa
-  # 添加ssh配置文件
   - cp .travis/ssh_config ~/.ssh/config
-  # 设置github账户信息
-  - git config --global user.name "bigxigua" #设置github用户名
-  - git config --global user.email 13365945839@qq.com #设置github用户邮箱
+  - git config --global user.name "bigxigua" 
+  - git config --global user.email 13365945839@qq.com 
 
 after_success:
   - ssh ubuntu@118.24.89.72 'cd /var/www/workspace/chat && git pull'

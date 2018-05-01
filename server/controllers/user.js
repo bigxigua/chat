@@ -172,5 +172,11 @@ module.exports = {
       account: account
     });
 		return (user ? true : false);
+  },
+  updateUserInfo: async (account) => {
+		console.log(account)
+    let user = await User.findOneUser({
+      account: account
+    });
   }
 };

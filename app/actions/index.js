@@ -4,10 +4,26 @@ export const socket = io(window.TBZ.DEFAULT_URL, {
 	'force new connection': true
 });
 
+export const SET_PAGE_STATE = 'SET_PAGE_STATE';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const GET_HISTORY_MESSAGE = 'GET_HISTORY_MESSAGE';
+export const SET_USER_CARD_INFO = 'SET_USER_CARD_INFO';
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const SET_USER_CURROOM = 'SET_USER_CURROOM';
+export const SEARCH_USERS = 'SEARCH_USERS';
+export const APPLY_FRIEND = 'APPLY_FRIEND';
+export const ADD_FRIEND = 'ADD_FRIEND';
+export const CHECK_LOGIN = 'CHECK_LOGIN';
+export const ADD_ROOM_LISTS = 'ADD_ROOM_LISTS';
+export const GET_ROOM_LISTS = 'GET_ROOM_LISTS';
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+
+
 //显示个人中心页面
 export const setPageState = (page) => {
 	return {
-		type: 'SET_PAGE_STATE',
+		type: SET_PAGE_STATE,
 		page
 	}
 };
@@ -15,7 +31,7 @@ export const setPageState = (page) => {
 //删除一条聊天记录
 export const deleteChatItem = (index) => {
 	return {
-		type: 'DELETE_ITEM',
+		type: DELETE_ITEM,
 		index
 	}
 }
@@ -23,7 +39,7 @@ export const deleteChatItem = (index) => {
 //往当前房间消息队列里添加消息
 export const addMessage = (message) => {
 	return {
-		type: 'ADD_MESSAGE',
+		type: ADD_MESSAGE,
 		message //对象 必要roomID/content/type/nickname
 	}
 }
@@ -49,7 +65,7 @@ export const sendPrivateMessage = (message) => {
 //填充登陆用户信息
 export const setUserCardInfo = (info) => {
 	return {
-		type: 'SET_USER_CARD_INFO',
+		type: SET_USER_CARD_INFO,
 		info //登陆的用户信息
 	}
 }
@@ -57,7 +73,7 @@ export const setUserCardInfo = (info) => {
 //获取登陆用户的所有信息
 export const _getUserInfo_ = (info) => {
 	return {
-		type: 'GET_USER_INFO',
+		type: GET_USER_INFO,
 		info //登陆的用户信息
 	}
 };
@@ -85,7 +101,7 @@ export const getUserInfo = (account) => {
 //检测用户登陆信息是否过期等
 export const __checkLogin__ = (info) => {
   return {
-    type: 'CHECK_LOGIN',
+    type: CHECK_LOGIN,
     info //true or false
   }
 };
@@ -112,7 +128,7 @@ export const checkLogin = (account) => {
 //createRoom
 export const _createRoom_ = (info) => {
 	return {
-		type: 'ADD_ROOM_LISTS',
+		type: ADD_ROOM_LISTS,
 		info
 	}
 };
@@ -134,7 +150,7 @@ export const createRoomAction = (info) => {
 //_getRoomLists
 export const _getRoomLists = (lists) => {
 	return {
-		type: 'GET_ROOM_LISTS',
+		type: GET_ROOM_LISTS,
 		lists
 	}
 };
@@ -157,7 +173,7 @@ export const getRoomLists = (token) => {
 //设置用户当前在哪个房间
 export const setUserCurRoom = (roomName) => {
 	return {
-		type: 'SET_USER_CURROOM',
+		type: SET_USER_CURROOM,
 		roomName
 	}
 };
@@ -165,7 +181,7 @@ export const setUserCurRoom = (roomName) => {
 //获取所有房间的聊天记录
 export const getAllRoomHistories = (histories) => {
 	return {
-		type: 'GET_HISTORY_MESSAGE',
+		type: GET_HISTORY_MESSAGE,
 		histories
 	}
 };
@@ -174,7 +190,7 @@ export const getAllRoomHistories = (histories) => {
 //搜索用户
 export const _searchUsers_ = (userLists) => {
 	return {
-		type: 'SEARCH_USERS',
+		type: SEARCH_USERS,
 		userLists
 	}
 };
@@ -195,7 +211,7 @@ export const searchUsers = (nickname) => {
 //申请加好友
 export const _applyFriend_ = (result) => {
 	return {
-		type: 'APPLY_FRIEND',
+		type: APPLY_FRIEND,
 		result
 	}
 };
@@ -216,7 +232,7 @@ export const applyFriend = (accounts) => {
 //添加好友
 export const _addFriend_ = (result) => {
 	return {
-		type: 'ADD_FRIEND',
+		type: ADD_FRIEND,
 		result
 	}
 };
@@ -240,5 +256,25 @@ export const updateApplyLists = (myApplyLists) => {
 		type: 'APPLY_FRIEND',
 		myApplyLists
 	}
+};
+
+//更新用户信息
+export const _updateUserInfo_ = (userInfo) => {
+  return {
+    type: UPDATE_USER_INFO,
+    userInfo
+  }
+};
+export const updateUserInfo = (info) => {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      socket.emit('updateUserInfo', info, (body) => {
+        if (!body.isError) {
+          dispatch(_updateUserInfo_(body.result))
+        }
+        body.isError ? (reject(body)) : (resolve(body))
+      })
+    })
+  }
 };
 

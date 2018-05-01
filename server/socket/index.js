@@ -1,4 +1,3 @@
-const connect = require('../controllers/connect.js');
 const message = require('../controllers/message.js');
 const user = require('../controllers/user.js');
 const room = require('../controllers/room.js');
@@ -88,6 +87,13 @@ module.exports = function (io) {
       })
     });
 
+    // socket.on('updateUserInfo', (info, cb) => {
+    //   user.updateUserInfo(info).then((result) => {
+    //     callbackSuccess(cb, result)
+    //   }).catch((err) => {
+    //     callbackError(cb, err)
+    //   })
+    // });
 
 	})
 };

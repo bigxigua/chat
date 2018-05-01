@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
-import { setPageState, deleteChatItem } from '../actions/index.js'
 import UserCenter from '../component//UserCenter.jsx'
-
+import {
+  updateUserInfo
+} from "../actions"
 
 function mapStateToProps(state) {
 	return {
@@ -13,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		
+    updateUserInfo: (params) => {dispatch(updateUserInfo(params))},
 	}
 }
 

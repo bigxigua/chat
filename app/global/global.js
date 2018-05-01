@@ -16,6 +16,7 @@
     DEFAULT_USER_BG: require('../images/user-bg.jpg'),
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
     DEFAULT_GROUP_AVATAR: require('../images/download.svg'),
+    UPLOAD_DEFAULT_AVATAR: require('../images/upload.jpg'),
     DEFAULT_URL: /^127.0.0.1/.test(location.hostname) ? 'http://127.0.0.1:8080/' : 'http://www.tbzhong.cn:8080/',
     expressionsIMG: require('../images/expressions.png'),
     expressions: ['呵呵', '哈哈', '吐舌', '啊', '酷', '怒', '开心', '汗', '泪', '黑线',
