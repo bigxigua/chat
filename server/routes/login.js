@@ -5,7 +5,7 @@ router.post('/login', async (ctx, next) => {
 	const {account, password} = ctx.request.body;
   const info = await user.verifyUser(account, password);
   ctx.body = { code: 0, data: info}
-})
+});
 
 
-module.exports = router
+module.exports = router;

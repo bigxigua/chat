@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../scss/form.scss';
 import classNames from 'classnames';
-import reqwest from 'reqwest';
+import axios from 'axios';
 
 const Toast = (props) => {
 	let text = props.text;
@@ -50,25 +50,16 @@ export default class FormContent extends Component {
 				account: this.refs.account.value.trim(),
 				password: this.refs.password.value.trim()
 			};
-
 			formType === 'register' ? (data = Object.assign({}, data, {nickname: this.refs.name.value.trim()})) : {};
-
-			reqwest({
-				url: url,
-				method: 'post',
-				data: data,
-				crossOrigin: true,
-				success: (res) => {
-					this.vertifyResponse(res)
-				},
-				error: (err) => {
-					this.vertifyResponse(err)
-				}
+      axios.post(url, data).then(res => {
+        this.vertifyResponse(res)
+			}).catch(err => {
+        this.vertifyResponse(err)
 			})
 		}
 	}
 	vertifyResponse(data){
-		const _data = data.data;
+		const _data = data.data && data.data.data;
 		if(_data.token) {
 			localStorage.setItem('token', _data.token);
 			localStorage.setItem('account', this.refs.account.value.trim());

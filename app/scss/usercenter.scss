@@ -17,6 +17,13 @@
 		margin: 0.45rem auto;
 		background-position: 50% 50%;
 		background-size: cover;
+		overflow: hidden;
+		background-color: #fff;
+		.UserCenter-upload{
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
 	}
 }
 .UserCenter-update{
@@ -74,4 +81,7 @@
 			}
 		}
 	}
+}
+.UserCenter-upload{
+
 }

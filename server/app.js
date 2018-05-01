@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const app = new Koa();
+const db = require('./models/db-mongo');
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
@@ -10,13 +11,13 @@ const cors = require('koa-cors');
 const index = require('./routes/index');
 const login = require('./routes/login');
 const register = require('./routes/register');
-const db = require('./models/db-mongo.js');
+const upload = require('./routes/upload');
 const Room = require('./models/room-mongo.js');
 const config = require('./config/init.js');
 
 
 const initRoom = async function () {
-	let initRoom = await Room.findOne({ name:  config.INIT_ROOM});
+  let initRoom = await Room.findOne({ name:  config.INIT_ROOM});
 	if (!initRoom) {
 		let room = new Room({
 			info: config.INIT_ROOM_INFO,
@@ -59,6 +60,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods());
 app.use(login.routes(), login.allowedMethods());
 app.use(register.routes(), register.allowedMethods());
+app.use(upload.routes(), upload.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {

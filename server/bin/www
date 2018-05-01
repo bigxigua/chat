@@ -21,7 +21,7 @@ var port = normalizePort(process.env.PORT || '8080');
 
 var server = http.createServer(app.callback());
 const io = require('socket.io')(server, { 'pingInterval': 15000 });
-require('../socket/index.js')(io)
+require('../socket/index.js')(io);
 
 /**
  * Listen on provided port, on all network interfaces.

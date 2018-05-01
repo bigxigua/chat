@@ -87,13 +87,13 @@ module.exports = function (io) {
       })
     });
 
-    // socket.on('updateUserInfo', (info, cb) => {
-    //   user.updateUserInfo(info).then((result) => {
-    //     callbackSuccess(cb, result)
-    //   }).catch((err) => {
-    //     callbackError(cb, err)
-    //   })
-    // });
+    socket.on('updateUserInfo', (info, cb) => {
+      user.updateUserInfo(info).then((result) => {
+        callbackSuccess(cb, result)
+      }).catch((err) => {
+        callbackError(cb, err)
+      })
+    });
 
 	})
 };

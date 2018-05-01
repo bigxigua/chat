@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
+    "busboy": "^0.2.14",
     "debug": "^2.6.3",
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.2.0",

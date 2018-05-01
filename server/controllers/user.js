@@ -173,10 +173,31 @@ module.exports = {
     });
 		return (user ? true : false);
   },
-  updateUserInfo: async (account) => {
-		console.log(account)
+  updateUserInfo: async (info) => {
+		console.log(info)
     let user = await User.findOneUser({
-      account: account
+      account: info.account
     });
+    if(user) {
+    	if(info.nickname) {
+        user.nickname = info.nickname;
+      }
+      if(info.info) {
+        user.info = info.info;
+      }
+      if(info.sex) {
+        user.sex = info.sex;
+      }
+      if(info.avatar) {
+        user.avatar = info.avatar;
+      }
+      await user.save();
+      return user
+		} else {
+    	return {
+        isError: true,
+        message: '请登录'
+			}
+		}
   }
 };

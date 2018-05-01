@@ -60,7 +60,7 @@ export const sendPrivateMessage = (message) => {
 			body.isError ? (reject(body)) : (resolve(body))
 		})
 	})
-}
+};
 
 //填充登陆用户信息
 export const setUserCardInfo = (info) => {
@@ -68,7 +68,7 @@ export const setUserCardInfo = (info) => {
 		type: SET_USER_CARD_INFO,
 		info //登陆的用户信息
 	}
-}
+};
 
 //获取登陆用户的所有信息
 export const _getUserInfo_ = (info) => {
@@ -259,18 +259,12 @@ export const updateApplyLists = (myApplyLists) => {
 };
 
 //更新用户信息
-export const _updateUserInfo_ = (userInfo) => {
-  return {
-    type: UPDATE_USER_INFO,
-    userInfo
-  }
-};
 export const updateUserInfo = (info) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       socket.emit('updateUserInfo', info, (body) => {
         if (!body.isError) {
-          dispatch(_updateUserInfo_(body.result))
+          dispatch(_getUserInfo_(body))
         }
         body.isError ? (reject(body)) : (resolve(body))
       })
