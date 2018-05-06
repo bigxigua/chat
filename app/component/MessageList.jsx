@@ -13,7 +13,7 @@ const Emoji = (props) => {
 			return <div 
 					style={{ background: 'url('+ TBZ.expressionsIMG +') 0px ' + (-index)*30 + 'px no-repeat' }}></div>
 	}
-}
+};
 
 const MessageIcon = (props) => {
 	let imgArr = [];
@@ -44,6 +44,17 @@ export default class MessageList extends Component {
 	constructor(props){
 		super(props); 
 	}
+  setPageState(){
+    return this.props.setPageState('USERINFO-PAGE')
+  }
+  setFriendInfo(info){
+    return this.props.setFriendInfo(info)
+	}
+  checkFriendInfo(friendInfo){
+		//打开用户信息页面
+		this.setPageState();
+		this.setFriendInfo(friendInfo);
+	}
 	render(){
 		const info = this.props.data;
 		const messageClassNames = classNames({
@@ -54,7 +65,8 @@ export default class MessageList extends Component {
 		return ( 
 			<div className={messageClassNames}>
 				<div className="MessageList-userinfo">
-					<img src={info.owner.avatar || TBZ.DEFAULT_AVATAR } className="MessageList-avatar" />
+					<img src={info.owner.avatar || TBZ.DEFAULT_AVATAR } className="MessageList-avatar"
+							 onClick={() => this.checkFriendInfo(info.owner)} />
 				</div>
 				<div className="MessageList-content">
 					<p>{ info.owner.nickname }</p>

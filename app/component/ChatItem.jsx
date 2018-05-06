@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import '../scss/chatitem.scss'
 import Hammer from 'hammerjs'
-
-import { getCss } from '../global/util.js'
-
  
 const DEFAULT_GROUP_AVATAR = TBZ.DEFAULT_GROUP_AVATAR;
 const EXPAND_CLASS = 'ChatListItem-Item-expand'

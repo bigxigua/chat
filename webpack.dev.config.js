@@ -55,7 +55,8 @@ module.exports = {
     inline: true,
     historyApiFallback: true,
     hot: false,
-    host: '127.0.0.1',
+    host: '172.30.120.3',
+    // host: '127.0.0.1',
     port: 3004,
     compress: true //是否启用gzip压缩
   }

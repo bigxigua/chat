@@ -3,6 +3,7 @@ import PageHeader from './PageHeader.jsx';
 import '../scss/usercenter.scss';
 import classNames from 'classnames'
 import axios from "axios";
+import {addFriend} from "../actions";
 
 const updateItems = [{
   label: '昵称',
@@ -14,7 +15,7 @@ const updateItems = [{
   name: 'info',
   maxLen: '100',
   value: ''
-},{
+}, {
   label: '性别',
   name: 'sex',
   maxLen: '2',
@@ -29,6 +30,7 @@ export default class UserCenter extends Component {
 		this.getFocusStyle = this.getFocusStyle.bind(this);
 		this.saveUserInfo = this.saveUserInfo.bind(this);
 		this.uploadHandle = this.uploadHandle.bind(this);
+		this.addFriend = this.addFriend.bind(this);
 		this.state = {
       updateItems: updateItems,
 			avatar: TBZ.UPLOAD_DEFAULT_AVATAR,
@@ -100,8 +102,22 @@ export default class UserCenter extends Component {
 			console.log('上传图片出错',err)
 		});
 	}
+  addFriend(){
+		const {applyFriend, friendInfo} = this.props;
+    applyFriend({
+      friendAccount: friendInfo.account + '',
+      selfAccount: TBZ.USER_ACCOUNT
+		});
+		console.log(this.props.friendInfo.account)
+	}
 	render(){
-		const userInfo = this.props.userInfo;
+		let {friendInfo, currentPage, userInfo} = this.props;
+		if(currentPage !== 'USERINFO-PAGE') return null;
+		const isFriendInfo = !TBZ.isEmptyObject(friendInfo);
+		if(isFriendInfo) {
+      userInfo = friendInfo;
+		}
+    console.log(friendInfo,currentPage)
 		const { avatar, isFocued } = this.state;
 		const updateElements = this.state.updateItems.map((item, index) => {
 			if(!item.value && !isFocued) {
@@ -114,12 +130,17 @@ export default class UserCenter extends Component {
             <input type="text" id="nickname"
 									 maxLength={item.maxLen}
 									 value={item.value || ''}
+                   disabled={isFriendInfo}
 									 onBlur={(e) => this.saveUserInfo(e, item)}
 						       onChange={(e) => this.modifyUserInfo(e,index)}/>
-            <div>
-              <span>{item.maxLen}</span>
-              <i className="w-icon-edit"></i>
-            </div>
+						{
+              !isFriendInfo ? (
+                <div>
+                  <span>{item.maxLen}</span>
+                  <i className="w-icon-edit"></i>
+                </div>
+							) : null
+						}
           </div>
         </li>
 			)
@@ -129,7 +150,9 @@ export default class UserCenter extends Component {
 						<PageHeader setPageState={this.setPageState} />
 						<div className="UserCenter-profile">
 							<div className="UserCenter-avatar" style={{ backgroundImage: 'url('+ (userInfo.avatar || avatar)  +')' }}>
-               	 <input type="file" onChange={(e) => this.uploadAvatar(e)} className="UserCenter-upload" />
+               	 <input type="file" onChange={(e) => this.uploadAvatar(e)}
+                        disabled={isFriendInfo}
+												className="UserCenter-upload"/>
 							</div>
 						</div>
 						<div className="UserCenter-update">
@@ -137,6 +160,18 @@ export default class UserCenter extends Component {
 								{updateElements}
               </ul>
 						</div>
+					{
+            isFriendInfo ? (
+              <div className="UserCenter-btn-box">
+									<div className="UserCenter-add" onClick={this.addFriend}>
+                    <i className="w-icon-plus"></i>
+									</div>
+									<div className="UserCenter-chat">
+										<i className="w-icon-message-o"></i>
+									</div>
+              </div>
+						) : null
+					}
 				</div>
 		)
 	}

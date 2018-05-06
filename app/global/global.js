@@ -17,7 +17,7 @@
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
     DEFAULT_GROUP_AVATAR: require('../images/download.svg'),
     UPLOAD_DEFAULT_AVATAR: require('../images/upload.jpg'),
-    DEFAULT_URL: /^127.0.0.1/.test(location.hostname) ? 'http://127.0.0.1:8080/' : 'http://www.tbzhong.cn:8080/',
+    DEFAULT_URL: /^118.24.89.72/.test(location.hostname) ?  'http://118.24.89.72:8080/' : 'http://172.30.120.3:8080/',
     expressionsIMG: require('../images/expressions.png'),
     expressions: ['呵呵', '哈哈', '吐舌', '啊', '酷', '怒', '开心', '汗', '泪', '黑线',
                      '鄙视', '不高兴', '真棒', '钱', '疑问', '阴险', '吐', '咦', '委屈', '花心', 
@@ -49,6 +49,9 @@
         window.addEventListener('resize', TBZ.calcRootSize, false);
         window._resizeListener_ = true;
       }
+    },
+    isEmptyObject: function (obj) {
+      return Object.keys(obj).length === 0;
     },
     supportPushState: window.history && window.history.pushState && window.history.replaceState && !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]\D|WebApps\/.+CFNetwork)/)
   }

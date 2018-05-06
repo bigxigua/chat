@@ -47,7 +47,7 @@ module.exports = {
 			account: account,
 			password: password,
 			nickname: nickname,
-			avatar: 'http://www.tbzhong.cn:8080/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
+			avatar: 'http://118.24.89.72:8080/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
 			sex: '未知',
 			info: '',
 			friends: [],
@@ -56,7 +56,6 @@ module.exports = {
 			onlineState: 1,
 			rooms: [room._id]
 		});
-		console.log(newUser)
 		if (newUser) {
 			room.users.push(newUser._id);
 			await room.save();
@@ -117,6 +116,7 @@ module.exports = {
 	applyFriend: async (info, SocketsMap) => {
 		//发起好友申请
 		//通知对方
+		console.log('-------')
 		let friend = await User.findOneUser({
 			account: info.friendAccount
 		});

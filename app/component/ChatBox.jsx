@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../scss/chatbox.scss'
 import { socket } from '../actions/index.js'
-import MessageList from '../component/MessageList.jsx'
+import MessageList from '../containers/messageList.js'
 
 export default class ChatBox extends Component {
 	constructor(props){
@@ -25,16 +25,15 @@ export default class ChatBox extends Component {
 		})
 		return TBZ.sortUp(histories, 'timestamp');
 	}
-	autoScroll(speed){
-		// let _speed = speed || 'normal';
+	autoScroll(){
 		let chatBox = document.querySelector('.ChatBox-container');
 		if(!chatBox) return;
-    chatBox.scrollTop = chatBox.scrollTop + '1000000000000';
+    chatBox.scrollTop = chatBox.scrollHeight + 20;
 	}
 	componentWillReceiveProps(nextProps){
 		if(!nextProps.currentRoomName) return;
 		setTimeout(()=>{
-			this.autoScroll('slow');
+			this.autoScroll();
 		}, 0)
 	}
 	render(){

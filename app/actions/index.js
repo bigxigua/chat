@@ -18,6 +18,7 @@ export const CHECK_LOGIN = 'CHECK_LOGIN';
 export const ADD_ROOM_LISTS = 'ADD_ROOM_LISTS';
 export const GET_ROOM_LISTS = 'GET_ROOM_LISTS';
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+export const SET_FRIEND_INFO = 'SET_FRIEND_INFO';
 
 
 //显示个人中心页面
@@ -269,6 +270,14 @@ export const updateUserInfo = (info) => {
         body.isError ? (reject(body)) : (resolve(body))
       })
     })
+  }
+};
+
+//查看好友信息时的好友信息
+export const setFriendInfo = (info) => {
+  return {
+    type: SET_FRIEND_INFO,
+    info
   }
 };
 
