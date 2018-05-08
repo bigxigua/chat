@@ -2,4 +2,4 @@
 
 rm -rf ./server/public/dist
 
-npm run dll && npm run build
+npm run dll && npm run build 
