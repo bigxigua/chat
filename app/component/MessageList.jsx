@@ -27,6 +27,7 @@ const MessageIcon = (props) => {
 		}
 	});
 	let resultArr = result.split('fuck'), len = resultArr.length;
+	console.log(resultArr)
 	const spanClass = classNames({
 			'nomal-span': len !== 1
 	});

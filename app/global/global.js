@@ -8,7 +8,7 @@
       var reg = new RegExp("\\{" + i + "\\}", "gm");
       str = str.replace(reg, arguments[i]);
     }
-    return str;
+    return str; 
   };
   window.TBZ = {
     USER_ACCOUNT: localStorage.getItem('account'),
@@ -17,7 +17,7 @@
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
     DEFAULT_GROUP_AVATAR: require('../images/download.svg'),
     UPLOAD_DEFAULT_AVATAR: require('../images/upload.jpg'),
-    DEFAULT_URL: /^118.24.89.72/.test(location.hostname) ?  'http://118.24.89.72:8080/' : 'http://172.30.120.3:8080/',
+    DEFAULT_URL: /^118.24.89.72/.test(location.hostname) ?  'http://118.24.89.72:8080/' : 'http://127.0.0.1:8080/',
     expressionsIMG: require('../images/expressions.png'),
     expressions: ['呵呵', '哈哈', '吐舌', '啊', '酷', '怒', '开心', '汗', '泪', '黑线',
                      '鄙视', '不高兴', '真棒', '钱', '疑问', '阴险', '吐', '咦', '委屈', '花心', 
