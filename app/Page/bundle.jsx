@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 export default class Bundle extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             mod: null
         }
@@ -18,7 +18,7 @@ export default class Bundle extends Component {
     load(props) {
         this.setState({
             mod: null
-        })
+        });
         props.load((mod) => {
             this.setState({
                 mod: mod.default ? mod.default : mod
@@ -27,7 +27,7 @@ export default class Bundle extends Component {
     }
     render() {
         if(!this.state.mod)
-            return false
+            return false;
         return this.props.children(this.state.mod)
     }
 }

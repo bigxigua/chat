@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆畅聊</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="box">
+        <div class="Form-container">
+            登陆
+            <div class="Form-input Form-input-account">
+                <input type="text" placeholder="输入账号" maxLength="15" autoComplete="off" ref="account" />
+            </div>
+            <div class="Form-input Form-input-password">
+                <input type="password" placeholder="输入密码" maxLength="16" autoComplete="off" ref="password" />
+            </div>
+            <div class="Form-btn">
+                { type == 'login' ? '登陆' : '注册'}
+            </div>
+            <div class="Form-footer">
+                { type == 'login'
+                ? (<Link to="/register">快速注册</Link>)
+                : (<Link to="/login">去登陆</Link>)
+                }
+            </div>
+            <Toast text={this.state.warnningText} />
+        </div>
+    </div>
+</body>
+</html>

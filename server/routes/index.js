@@ -1,12 +1,12 @@
-const router = require('koa-router')()
+const router = require('koa-router')();
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'fuck'
+  await ctx.render('./dist/', {
+    title: 'Chat'
   })
 });
 router.get('/login', async (ctx, next) => {
-  await ctx.render('index', {
+  await ctx.render('login', {
     title: 'fuck'
   })
 });

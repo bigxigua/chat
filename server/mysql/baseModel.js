@@ -1,5 +1,10 @@
 const mysql = require('mysql');
 const MySQLClient = require('./MySQLClient.js');
+const {
+  create_table_sql_user
+} = require('../config/mysql-config');
+
+console.log(create_table_sql_user);
 
 class BaseModel {
   constructor(option){
@@ -42,6 +47,7 @@ class BaseModel {
 
   //创建表
   createTable() {
+    return this.executeSql(create_table_sql_user)
     //创建表最好通过软件
   }
 
@@ -62,7 +68,7 @@ class BaseModel {
 
   //查
   find(sql, params = []) {
-    return this.executeSql(sql, params);
+    return this.executeSql(sql, params)
   }
   //查找所有
   findAll(tableName) {

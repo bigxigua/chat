@@ -35,7 +35,7 @@ class App extends React.Component {
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
 						</div>		
-					</Router>
+				</Router>
 			</div>
 		)
 	}
@@ -49,4 +49,4 @@ ReactDOM.render(
 		</div>
 	</Provider>,
 	document.getElementById('root')
-)
+);

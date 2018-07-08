@@ -1,5 +1,6 @@
 #### 表结构设计
 1. User  用户表
+
               
 	字段    字段类型    字段描述    备注
 	U_ID    Int        主键、自增
@@ -84,12 +85,13 @@
 
 8. User_GroupsMSGToUser  群消息关联表
 
+
 	字段    字段类型    字段描述    备注
 	GM_ID    Int    ID    主键
 	GM _UserID    Int    接收者ID    
 	GM _GroupMessageID    Int    群消息ID    外键
 	GM _State    Bit    接收状态    
-   GM _CreateTime    Datetime    发送时间 
+    GM _CreateTime    Datetime    发送时间 
 
 9.User_GroupsMSGUserToUser  群内私聊消息关联表
 

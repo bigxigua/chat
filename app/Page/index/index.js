@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Index from './Index.jsx'
 
 import { 
-	deleteChatItem,
+	deleteChatItem, 
 	setPageState,
 	getUserInfo,
 	getRoomLists,
