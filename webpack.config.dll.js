@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
 	entry: {
-		vendor: ['classnames', 'amfe-flexible', 'hammerjs','react',
+		vendor: ['classnames', 'hammerjs','react',
 						 'react-dom', 'react-redux','redux', 'redux-thunk','socket.io-client']
 	},
 	output: {

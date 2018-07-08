@@ -10,10 +10,10 @@ before_install:
   - touch ~/.ssh/id_rsa
   - ls  ~/.ssh
   - chmod 600 ~/.ssh/*
-   - sudo chmod 644 ~/.ssh/config
+  - sudo chmod 644 ~/.ssh/config
   - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa
-  - cp .travis/ssh_config ~/.ssh/config
+  - cp -rp .travis/ssh_config ~/.ssh/config
   - git config --global user.name "bigxigua" 
   - git config --global user.email 13365945839@qq.com 
 
