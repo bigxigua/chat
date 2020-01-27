@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "koa-cors": "0.0.16",
-    "mongoose": "^4.13.5",
+    "mongoose": "^5.8.9",
     "nodemon": "^1.8.1",
     "socket.io": "^2.0.4"
   }
